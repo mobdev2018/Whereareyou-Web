@@ -1,0 +1,27 @@
+@import 'scss/bootstrap-variables';
+
+.register-container{
+
+  .error-text {
+    font-size: 11px;
+    color: $red;
+  }
+
+  .register-card {
+    background: url('/static/img/modal-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .textfield {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $gray-200;
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 2px solid $gray-600;
+    }
+  }
+}

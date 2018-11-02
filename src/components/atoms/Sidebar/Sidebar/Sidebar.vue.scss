@@ -1,0 +1,147 @@
+@import 'scss/bootstrap-variables';
+
+.sidebar {
+  height: 100vh !important;
+  background-color: #ffffff;
+  
+  .divider {
+    border-top: 1px solid $gray-300;
+  }
+
+  .nav-title {
+    color: $gray-600;
+    text-transform: none;
+  }
+
+  .nav-item {
+    background-color: transparent !important;
+
+    .nav-link {
+      cursor:pointer;
+      background-color: transparent !important;
+      color: $gray-300 !important;
+      i {
+        color: $gray-300;
+      }
+  
+      &.active {
+        color: $gray-700 !important;
+        i {
+          color: $gray-700;
+        }
+      }
+  
+      &:hover {
+        color: $gray-700 !important;
+        i {
+          color: $gray-700;
+        }
+      }
+  
+    }
+
+    &.nav-dropdown {
+      .nav-dropdown-toggle {
+        display: flex;
+        align-items: center;
+        padding-right: 30px;
+  
+        &::before {
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+      }
+  
+      &.open.active {
+        .nav-dropdown-toggle {
+          color: $gray-700 !important;
+          i {
+            color: $gray-700;
+          }
+        }
+      }
+    }
+  }
+
+  .slider-footer {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .add-device-button {
+      width: 180px;
+      height: 50px;
+      border-radius: 25px;
+      font-weight: 500;
+      
+      @media (max-width: 767px) {
+        width: 80px;
+        height: 40px;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .invite-modal {
+    color: $gray-700;
+
+    .black-color {
+      color: $black;
+    }
+
+    .modal-dialog {
+      max-width: 700px;
+
+      .modal-content {
+        background: url('/static/img/modal-bg.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        .modal-header {
+          .modal-title {
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: $gray-700;
+          }
+          .close {
+            margin-top: -72px;
+            margin-right: -30px;
+            color: $red;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+
+    .invite-radio-group {
+      .form-row {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    .add-button {
+      width: 70px;
+      height: 36px;
+      border-radius: 18px;
+      font-weight: 500;
+    }
+    
+    .payment-button {
+      width: 240px;
+      height: 120px;
+      background-color: transparent;
+      border-color: transparent;
+      padding: 0px;
+      
+      &:hover {
+        border-color: $gray-200;
+      }
+    }
+  }
+  
+}

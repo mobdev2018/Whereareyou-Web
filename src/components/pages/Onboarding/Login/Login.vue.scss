@@ -1,0 +1,32 @@
+@import 'scss/bootstrap-variables';
+
+.login-container{
+
+  .error-text {
+    font-size: 11px;
+    color: $red;
+  }
+
+  .gray-border-top {
+    border-top: 1px solid $gray-200;
+  }
+
+  .textfield {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $gray-200;
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 2px solid $gray-600;
+    }
+  }
+
+  .login-card {
+    background: url('/static/img/modal-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+}

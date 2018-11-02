@@ -1,0 +1,13 @@
+<b-nav-item-dropdown right no-caret class="header-menu">
+  <template slot="button-content">
+    <div class="display-flex align-items-center">
+      <avatar :username="username" :size="30" color="primary"></avatar>
+    </div>
+  </template>
+  <b-dropdown-item to="/dashboard/myaccount"><i class="fa fa-address-card fs-16 gray-color"></i> Account</b-dropdown-item>
+  <b-dropdown-item to="/dashboard/devices"><i class="fa fa-mobile fs-22 gray-color"></i> <span>All Devices</span></b-dropdown-item>
+  <b-dropdown-item><i class="fa fa-mobile fs-22 gray-color"></i> Pending Invites</b-dropdown-item>
+  <b-dropdown-item><i class="fas fa-credit-card fs-16 gray-color"></i> Payment Method</b-dropdown-item>
+  <b-dropdown-item><i class="fa fa-life-ring fs-16 gray-color"></i> Support</b-dropdown-item>
+  <b-dropdown-item @click="onLogout"><i class="fa fa-sign-out fs-16 gray-color"></i> Logout</b-dropdown-item>
+</b-nav-item-dropdown>

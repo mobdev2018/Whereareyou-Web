@@ -1,0 +1,210 @@
+<div class="sidebar p-t-60">
+  <nav class="sidebar-nav">
+    <ul class="nav">
+      <template v-for="(item, index) in navItems">
+        <template v-if="item.title">
+          <SidebarNavTitle :name="item.name" :classes="item.class" :wrapper="item.wrapper"/>
+        </template>
+        <template v-else-if="item.divider">
+          <SidebarNavDivider :classes="item.class" v-bind:key="index"/>
+        </template>
+        <template v-else>
+          <template v-if="item.children">
+            <SidebarNavDropdown :name="item.name" :url="item.url" :icon="item.icon" v-bind:key="index">
+              <template v-for="(childLink, index) in item.children">
+                <SidebarNavItem :classes="item.class" v-bind:key="index">
+                  <SidebarNavLink :name="childLink.name" :url="childLink.url" :icon="childLink.icon" :badge="childLink.badge" :variant="item.variant" classes="pl-4"/>
+                </SidebarNavItem>
+              </template>
+            </SidebarNavDropdown>
+          </template>
+          <template v-else>
+            <SidebarNavItem :classes="item.class" v-bind:key="index">
+              <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" :badge="item.badge" :variant="item.variant"/>
+            </SidebarNavItem>
+          </template>
+        </template>
+      </template>
+    </ul>
+    <slot></slot>
+  </nav>
+  <div class="slider-footer elevation-3">
+    <b-button variant="danger" class="add-device-button" @click="onAddNewDevice">+ Add New Device</b-button>
+  </div>
+
+  <b-modal centered hide-footer no-close-on-backdrop id="inviteDeviceModal" ref="inviteDeviceModal" :title="inviteModalTitle" class="invite-modal">
+
+    <!-- Invites Available -->
+    <div v-if="inviteStep == 0" class="mx-3 my-3">
+      <b-row>
+        <b-col cols="12 text-center">
+          <p class="black-color fw-bold">Invites Available</p>
+          <b-form-group
+            class="invite-radio-group">
+            <b-form-radio-group id="basicInlineRadios"
+              :plain="true"
+              :options="[
+                {text: 'Child Mode',value: '1'},
+                {text: 'Bait Mode',value: '2'},
+                {text: 'Fleet Mode',value: '3'}
+              ]"
+              :checked="1">
+            </b-form-radio-group>
+          </b-form-group>
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col cols="12" sm="6" class="px-4">
+          <p class="mb-4 text-center black-color fw-bold">Invite Manually (3)</p>
+  
+          <p class="text-center">Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec.</p>
+  
+          <b-form data-vv-scope="info-form">
+            <div class="mt-3">
+              <p class="mb-1">Device Name*</p>
+              <b-form-input v-model="deviceName">
+              </b-form-input>
+            </div>
+
+            <div class="mt-1">
+              <p class="mb-1">Email*</p>
+              <b-form-input v-model="email">
+              </b-form-input>
+            </div>
+
+            <div class="mt-1">
+              <p class="mb-1">Phone Number*</p>
+              <b-form-input v-model="deviceName">
+              </b-form-input>
+            </div>
+
+            <div class="mt-3 text-right">
+              <b-button variant="danger" class="add-button" @click="">Add</b-button>
+            </div>
+          </b-form>
+  
+        </b-col>
+        <b-col cols="12" sm="6" class="px-4">
+          <p class="mb-4 text-center black-color fw-bold">Invite with CSV file</p>
+
+          <p class="text-center">Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec.</p>
+
+          <div>
+            <UploadView :type="selectedDocType" :successUpload="successUpload"></UploadView>
+          </div>
+
+          <div class="mt-3 display-flex justify-content-center">
+            <i class="fa fa-download fs-24 red-color"></i>
+            <span class="ml-2">samplefile.csv</span>
+          </div>
+
+        </b-col>
+      </b-row>
+      <b-row class="mt-4">
+        <b-col cols="12" sm="6" class="px-4">
+          <div>
+            <b-form-checkbox :plain="true" value="2">Send invite on a text message</b-form-checkbox>
+          </div>
+          <div class="mt-2">
+            <b-form-checkbox :plain="true" value="2">Send invite to Email address</b-form-checkbox>
+          </div>
+        </b-col>
+        <b-col cols="12" sm="6" class="px-4 text-center">
+          <b-button variant="danger" class="round-button" @click="onSendInvite()">Send Invite</b-button>
+        </b-col>
+      </b-row>
+    </div>
+
+    <!-- Register a Payment Method -->
+    <div v-if="inviteStep == 1" class="mx-3 my-3">
+      <b-row>
+        <b-col>
+          <p class="px-5">Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed sollicitudin ipsum quis nunc</p>
+        </b-col>
+        <b-col cols="12" class="text-center mt-3">
+          <b-button class="elevation-2 payment-button" @click="onPayWithPaypal">
+            <div>
+              <div class="p-2 gray-border-bottom">Pay with Paypal</div>
+              <div class="p-2">
+                <b-img src="/static/img/bait/paypal.png" style="width: 25%;"></b-img>
+                <p class="mb-0">The faster safer way to pay</p>
+              </div>
+            </div>
+          </b-button>
+        </b-col>
+
+        <b-col cols="12" class="text-center mb-5">
+          <b-button class="elevation-2 payment-button mt-3" @click="onPayWithCredit">
+            <div style="height: 100%;">
+              <div class="p-2 gray-border-bottom">Pay with Credit or Debit card</div>
+              
+              <b-row class="mx-2 mt-4">
+                <b-col cols="3" class="p-0"><b-img src="/static/img/bait/mastercard.png" style="width: 100%;"></b-img></b-col>
+                <b-col cols="3" class="p-0"><b-img src="/static/img/bait/visa.png" style="width: 100%;"></b-img></b-col>
+                <b-col cols="3" class="p-0"><b-img src="/static/img/bait/american-express.png" style="width: 100%;"></b-img></b-col>
+                <b-col cols="3" class="p-0"><b-img src="/static/img/bait/discover.png" style="width: 100%;"></b-img></b-col>
+              </b-row>
+            </div>
+          </b-button>
+        </b-col>
+      </b-row>
+    </div>
+
+    <!-- Register a Credit Card -->
+    <div v-if="inviteStep == 2" class="mx-3 my-3">
+      <b-row>
+        <b-col>
+          <p class="px-5">Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed sollicitudin ipsum quis nunc</p>
+        </b-col>
+        <b-col cols="12" class="mt-3 display-flex justify-content-center">
+          <div style="width: 300px;">
+            <div>
+              Card Holder Name
+              <b-input></b-input>
+            </div>
+            <div class="mt-3">
+              Card Number
+              <b-input></b-input>
+            </div>
+    
+            <b-row class="mt-3 mx-0">
+              <b-col cols="3" class="p-0"><b-img src="/static/img/bait/mastercard.png" style="width: 100%;"></b-img></b-col>
+              <b-col cols="3" class="p-0"><b-img src="/static/img/bait/visa.png" style="width: 100%;"></b-img></b-col>
+              <b-col cols="3" class="p-0"><b-img src="/static/img/bait/american-express.png" style="width: 100%;"></b-img></b-col>
+              <b-col cols="3" class="p-0"><b-img src="/static/img/bait/discover.png" style="width: 100%;"></b-img></b-col>
+            </b-row>
+    
+            <div class="mt-3">
+              <b-row>
+                <b-col cols="6" class="pr-1">
+                  Expiration Date
+                  <b-input></b-input>
+                </b-col>
+                <b-col cols="6" class="pl-1">
+                  <div>CVV<i class="fa fa-question-circle fs-12 red-color"></i></div>
+                  <b-input></b-input>
+                </b-col>
+              </b-row>          
+            </div>
+    
+            <div class="mt-4 text-center">
+              <b-button variant="danger" class="round-button" @click="">Register</b-button>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </div>
+    
+    <!-- Bottom bar -->
+    <b-row class="mt-5 mb-3">
+      <b-col cols="12 text-center">
+        <i class="fa fa-circle fs-16" :class="inviteStep == 0 ? 'red-color' : 'gray-color'"></i>
+        <i class="fa fa-circle fs-16 ml-2" :class="inviteStep == 1 ? 'red-color' : 'gray-color'"></i>
+        <i class="fa fa-circle fs-16 ml-2" :class="inviteStep == 2 ? 'red-color' : 'gray-color'"></i>
+        <i class="fa fa-circle fs-16 ml-2" :class="inviteStep == 3 ? 'red-color' : 'gray-color'"></i>
+        <i class="fa fa-circle fs-16 ml-2" :class="inviteStep == 4 ? 'red-color' : 'gray-color'"></i>
+      </b-col>
+    </b-row>
+  </b-modal>
+</div>

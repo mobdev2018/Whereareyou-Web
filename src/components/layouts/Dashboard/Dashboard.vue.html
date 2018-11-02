@@ -1,0 +1,12 @@
+<div class="app dashboard-layout">
+  <Navbar class="elevation-3"/>
+  <div class="app-body">
+    <Sidebar :navItems="navItems" class="elevation-3"/>
+    <main class="main">
+      <div class="container-fulid p-t-60">
+        <router-view></router-view>
+      </div>
+    </main>
+    <Aside/>
+  </div>
+</div>

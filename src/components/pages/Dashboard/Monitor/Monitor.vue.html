@@ -1,0 +1,44 @@
+<div class="animated fadeIn monitor-container">
+  <gmap-map
+    ref="gMap"
+    :center="center"
+    :options="mapOptions"
+    style="height: calc(100vh - 60px);">
+    
+    <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+      <div class="info-window">
+        <div class="mb-1"><i class="fal fa-calendar"></i><small class="text-muted ml-2">{{ marker.time }}</small></div>
+        <div class="mb-1"><small>{{ marker.activityName }}</small></div>
+        <div class="mb-1"><small class="text-muted">speed: {{ marker.speed }}</small></div>
+        <div class="mb-1"><small class="text-muted">Provider: {{marker.provider}}</small></div>
+        <div class="display-flex justify-content-between mt-2">
+          <p class="mb-1">Battery</p>
+          <p class="mb-1">{{ marker.battery }}%</p>
+        </div>
+        <b-progress height={} class="progress-xs" variant="info" :value="marker.battery"></b-progress>
+      </div>
+    </gmap-info-window>
+
+    <gmap-cluster :grid-size="50" :maxZoom="isGrouping ? 20 : 0">
+      <gmap-marker
+        :key="index"
+        v-for="(m, index) in markers"
+        :icon="(markers.length-1) == index ? lastPinIcon : normalPinIcon"
+        :position="m.position"
+        :label="m.label"
+        :title="m.title"
+        :clickable="true"
+        :draggable="m.draggable"
+        :zIndex="index"
+        color="#00FF00"
+        @click="toggleInfoWindow(m, index)">
+      </gmap-marker>
+    </gmap-cluster>
+
+  </gmap-map>
+
+  <div v-if="loading" class="loader-view">
+    <pulse-loader :loading="loading" color="#9da0a8"></pulse-loader>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+/*!
+ * GenesisUI - Bootstrap 4 Admin Template
+ * @version v1.8.14
+ * @link https://genesisui.com
+ * Copyright (c) 2018 creativeLabs Łukasz Holeczek
+ * @license https://genesisui.com/license.html
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
+
+// Override Boostrap variables
+@import "bootstrap-variables";
+
+// Import Bootstrap source files
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Override core variables
+@import "core-variables";
+
+// Import core styles
+@import "core/core";
+
+// Import UI Kits
+@import "uikits/uikits";
+
+// Custom styles
+@import "custom";
+
+// fonts
+@import "fonts";
+
+// layouts
+@import "layouts";
+
+// colors
+@import "colors"

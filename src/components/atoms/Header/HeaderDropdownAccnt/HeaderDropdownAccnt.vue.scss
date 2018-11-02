@@ -1,0 +1,12 @@
+@import 'scss/bootstrap-variables';
+
+.gray-color {
+  color: $gray-600;
+}
+
+.header-menu {
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+  }
+}

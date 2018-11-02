@@ -1,0 +1,22 @@
+<header class="app-header navbar navbar-view">
+  <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button" @click="mobileSidebarToggle">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <b-link class="navbar-brand" to="/dashboard/home"></b-link>
+
+  <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" @click="sidebarToggle">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- <b-navbar-nav class="nav-menu-view d-md-down-none">
+    <b-nav-item class="px-sm-2 px-lg-3 px-xl-4" to="/dashboard/home"><i class="fa fa-dashboard fa-md"></i> Dashboard</b-nav-item>
+  </b-navbar-nav> -->
+
+  <b-navbar-nav class="ml-auto right-menu">
+    <HeaderDropdownAccnt/>
+  </b-navbar-nav>
+
+  <button v-if="!hideAsideMenu" class="navbar-toggler aside-menu-toggler" type="button" @click="asideToggle">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</header>

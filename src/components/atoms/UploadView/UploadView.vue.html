@@ -1,0 +1,19 @@
+<div class="upload-view">
+  <vueDropzone
+    ref="myDropzone" 
+    id="dropzone" 
+    @vdropzone-file-added="vfileAdded" 
+    @vdropzone-success="vsuccess" 
+    @vdropzone-error="verror" 
+    @vdropzone-removed-file="vremoved" 
+    @vdropzone-sending="vsending" 
+    @vdropzone-success-multiple="vsuccessMuliple" 
+    @vdropzone-sending-multiple="vsendingMuliple" 
+    @vdropzone-queue-complete="vqueueComplete" 
+    @vdropzone-total-upload-progress="vprogress" 
+    @vdropzone-mounted="vmounted" 
+    :options="dropzoneOptions"
+    class="dropzone-view">
+  </vueDropzone>
+
+</div>

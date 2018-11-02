@@ -1,0 +1,10 @@
+@import 'scss/bootstrap-variables';
+
+.upload-view {
+  
+  .dropzone-view {
+    height: 190px;
+    border: 1px dashed $gray-300;
+    border-width: 2px;
+  }
+}

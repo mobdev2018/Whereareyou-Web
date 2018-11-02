@@ -1,0 +1,70 @@
+@import 'scss/bootstrap-variables';
+
+.navbar-view {
+  background-color: #fff !important;
+  height: 60px !important;
+  border-bottom: 1px solid $gray-100;
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+  }
+
+  .navbar-brand {
+    padding: 0px !important;
+    height: 60px !important;
+    margin-right: 0px !important;
+    background-position: center !important;
+    background-size: 150px auto !important;
+    background-image: url(/static/img/logo.png) !important;
+    background-color: transparent !important;
+
+    @media (min-width: 992px) {
+      position: relative !important;
+      &:after {
+        content: '';
+        border-right: 1px solid #e4e6eb;
+        position: absolute;
+        top: 0;
+        left: 220px;
+        height: 100%;
+      }
+    }
+  }
+
+  .nav-menu-view {
+    .nav-item {
+      position: relative;
+      .nav-link {
+        color: gray;
+        &.active {
+          color: $blue;
+          &:after {
+            position: absolute;
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: $blue;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .right-menu {
+    padding-right: 16px;
+    @media (max-width: 767px) {
+      padding-right: 0;
+    }
+  }
+
+  .line-view {
+    width: 1px;
+    height: 60px;
+    background-color: $gray-200;
+  }
+}
