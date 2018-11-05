@@ -69,8 +69,6 @@ export default {
 
         this.markers = []
 
-        console.log('========', data)
-
         this.markers.push({
           position: {lat: data.latitude, lng: data.longitude},
           label: {
