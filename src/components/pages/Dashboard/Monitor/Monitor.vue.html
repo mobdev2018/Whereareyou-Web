@@ -8,6 +8,7 @@
     <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
       <div class="info-window">
         <div class="mb-1"><i class="fal fa-calendar"></i><small class="text-muted ml-2">{{ marker.time }}</small></div>
+        <div class="mb-1"><i class="fal fa-location-arrow"></i><small class="text-muted ml-2">{{ marker.address }}</small></div>
       </div>
     </gmap-info-window>
 
@@ -23,9 +24,5 @@
     </gmap-marker>
     
   </gmap-map>
-
-  <!-- <div v-if="loading" class="loader-view">
-    <pulse-loader :loading="loading" color="#9da0a8"></pulse-loader>
-  </div> -->
 
 </div>

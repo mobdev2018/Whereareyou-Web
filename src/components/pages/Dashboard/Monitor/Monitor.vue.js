@@ -6,7 +6,6 @@ export default {
 
   data () {
     return {
-      loading: false,
       center: { lat: 51.7519, lng: -1.2578 },
       markers: [],
       marker: {
@@ -78,7 +77,6 @@ export default {
             text: ' '
           },
           draggable: false,
-          title: 'Stanford',
           time: data.lastTime,
           address: data.address
         })
@@ -106,7 +104,8 @@ export default {
     toggleInfoWindow (marker, idx) {
       this.infoWindowPos = marker.position
       this.marker = {
-        time: marker.time
+        time: marker.time,
+        address: marker.address
       }
 
       // check if its the same marker that was selected if yes toggle
@@ -123,7 +122,8 @@ export default {
 
       this.infoWindowPos = marker.position
       this.marker = {
-        time: marker.time
+        time: marker.time,
+        address: marker.address
       }
 
       // check if its the same marker that was selected if yes toggle
