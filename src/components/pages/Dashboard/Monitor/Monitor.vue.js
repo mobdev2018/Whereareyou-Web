@@ -75,7 +75,7 @@ export default {
         this.markers.push({
           position: {lat: data.latitude, lng: data.longitude},
           label: {
-            text: 'F'
+            text: ' '
           },
           draggable: false,
           title: 'Stanford',
