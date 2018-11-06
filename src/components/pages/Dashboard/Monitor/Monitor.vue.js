@@ -9,7 +9,8 @@ export default {
       center: { lat: 51.7519, lng: -1.2578 },
       markers: [],
       marker: {
-        time: ''
+        time: '',
+        address: ''
       },
       normalPinIcon: {
         url: '/static/img/pin_red.png',
@@ -69,13 +70,16 @@ export default {
 
         this.markers = []
 
+        let datetime = this.$moment.utc(data.lastTime, 'YYYY-MM-DD HH:mm:ss').toDate()
+        var strTime = this.$moment(datetime).format('YYYY-MM-DD HH:mm:ss')
+
         this.markers.push({
           position: {lat: data.latitude, lng: data.longitude},
           label: {
             text: ' '
           },
           draggable: false,
-          time: data.lastTime,
+          time: strTime,
           address: data.address
         })
 
